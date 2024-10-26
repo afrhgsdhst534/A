@@ -21,7 +21,10 @@ public class CanvasManager : MonoBehaviour
     private InputButtons buttons;
     private InventoryManager inventory;
     public InventoryPickUp itemBarrel;
-    public List<Item> allItems;
+    public List<Item> allItems; float clicked;
+    float clicktime;
+    public float clickdelay = 0.1f;
+
     private void Awake()
     {
         instance = this;
@@ -33,7 +36,25 @@ public class CanvasManager : MonoBehaviour
         enemyC = EnemyCharacters.instance;
         StartCoroutine(RN());
     }
-  public  IEnumerator RN()
+    bool DoubleClick()
+    {
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            clicked++;
+            if (clicked == 1) clicktime = Time.time;
+        }
+        if (clicked > 1 && Time.time - clicktime < clickdelay)
+        {
+            clicked = 0;
+            clicktime = 0;
+            return true;
+        }
+        else if (clicked > 2 || Time.time - clicktime > 1) clicked = 0;
+        return false;
+    }
+
+    public IEnumerator RN()
     {
         yield return new WaitForSeconds(0.01f);
         if (allyCharacters.allAllyCharacters.Count > 0)
@@ -67,21 +88,25 @@ public class CanvasManager : MonoBehaviour
         if (obj.GetComponent<BaseÑharacteristic>() != null)
             if (!obj.GetComponent<BaseÑharacteristic>().isCast)
                 pickedChar = obj;
-            spell = obj.GetComponent<SpellManager>();
-            mana = pickedChar.GetComponent<PlayersUIManager>().mana;
-            hp = pickedChar.GetComponent<PlayersUIManager>().hp;
-            inventory = pickedChar.GetComponent<InventoryManager>();
+        spell = obj.GetComponent<SpellManager>();
+        mana = pickedChar.GetComponent<PlayersUIManager>().mana;
+        hp = pickedChar.GetComponent<PlayersUIManager>().hp;
+        inventory = pickedChar.GetComponent<InventoryManager>();
     }
     private void Update()
-{
-        if (Input.GetKeyDown(KeyCode.P)) {
-            if (Time.timeScale>0)
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (Time.timeScale > 0)
             {
                 Time.timeScale = 0;
             }
             else { Time.timeScale = 1; }
         }
-
+        if (pickedChar == null && allyCharacters.allAllyCharacters.Count > 0)
+        {
+            pickedChar = allyCharacters.allAllyCharacters[0];
+        }
         if (pickedChar != null && pickedChar.GetComponent<BaseÑharacteristic>() != null)
         {
             if (Input.GetKeyDown(KeyCode.G))
@@ -102,7 +127,7 @@ public class CanvasManager : MonoBehaviour
                     StartCoroutine(Next1());
                 }
             }
-            if (Input.GetMouseButtonDown(0))
+            if (DoubleClick())
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;

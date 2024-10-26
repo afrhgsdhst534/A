@@ -4,9 +4,12 @@ public class InventoryPickUp : MonoBehaviour
     public Item item;
     [HideInInspector]
     public CanvasManager a;
+    ItemsList list;
     private void Start()
     {
+        list = ItemsList.instance;
         a = CanvasManager.instance;
+        item = list.ItemFinder(item);
     }
     public void OnTriggerEnter(Collider other)
     {
@@ -16,7 +19,6 @@ public class InventoryPickUp : MonoBehaviour
         }
         if (other.gameObject.GetComponent<IAttackObject>())
         {
-            Destroy(gameObject);
         }
     }
     private void OnMouseDown()

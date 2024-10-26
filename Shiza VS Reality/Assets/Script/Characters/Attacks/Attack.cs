@@ -7,7 +7,7 @@ public class Attack : MonoBehaviour
     public List<AttackModificatior> modificatior;
     public Animator animator;
     public Base—haracteristic chars;
-    private float delay;
+    public float delay;
     public bool attack;
     private MovementChanger changer;
     public IAttackObject attackObject;
@@ -26,7 +26,7 @@ public class Attack : MonoBehaviour
     private void Update()
     {
         delay -= Time.deltaTime;
-        if (Input.GetMouseButtonDown(1) && changer.movement == "arrow"&& attackObject != null|| changer.movement == "arrow" && Input.GetKeyDown(mButtons.attack))
+        if (Input.GetMouseButtonDown(1) && changer.movement == "arrow" && attackObject != null || changer.movement == "arrow" && Input.GetKeyDown(mButtons.attack))
         {
             Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
             Vector3 dir = Input.mousePosition - pos;
@@ -34,24 +34,24 @@ public class Attack : MonoBehaviour
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.up);
             StartCoroutine(OnAttack());
         }
-        if (attack && chars.isAttacking&&changer.movement =="ai" && attackObject != null)
+        if (attack && chars.isAttacking && changer.movement == "ai" && attackObject != null)
         {
             StartCoroutine(OnAttackEnemy());
         }
         switch (delay)
         {
             case < 0:
-                attack=true;
+                attack = true;
                 break;
             case > 0:
-                attack=false;
+                attack = false;
                 break;
         }
     }
     public void AddModificator(AttackModificatior m)
     {
-        modificatior.Add(m);
-        var a =Instantiate(m);
+        var a = Instantiate(m);
+        modificatior.Add(a);
         a.transform.SetParent(mObj);
         a.transform.localScale = Vector3.one;
     }
@@ -59,8 +59,9 @@ public class Attack : MonoBehaviour
     {
         attackObject = obj;
         var a = Instantiate(obj.attackObj);
-        if (aOObj.transform.childCount>0) {
-        DestroyImmediate(aOObj.transform.GetChild(0).gameObject);
+        if (aOObj.transform.childCount > 0)
+        {
+            DestroyImmediate(aOObj.transform.GetChild(0).gameObject);
         }
         a.transform.SetParent(aOObj.transform);
         a.transform.localScale = Vector3.one;
@@ -78,16 +79,18 @@ public class Attack : MonoBehaviour
     }
     public IEnumerator OnAttack()
     {
-            if (attack&&chars.isAlly && attackObject != null || attack && changer.movement == "arrow"&&attackObject!=null)
-            {
-                Next();
-                yield return new WaitForSeconds(delay);
-                animator.SetBool("attackB", false);
-                chars.isAttacking = false;
-            }
+        if (attack && chars.isAlly && attackObject != null || attack && changer.movement == "arrow" && attackObject != null)
+        {
+            Next();
+            yield return new WaitForSeconds(delay);
+            animator.SetBool("attackB", false);
+            chars.isAttacking = false;
+        }
     }
-    void Next() {
-        if(attackObject!=null)
+    void Next()
+    {
+        if (attackObject != null)
+        {
             chars.isAttacking = true;
             animator.SetBool("attackB", true);
             animator.SetFloat("attackF", 1 + (chars.attackSpeed / 100f));
@@ -99,12 +102,13 @@ public class Attack : MonoBehaviour
             {
                 for (int i = 0; i < modificatior.Count; i++)
                 {
-                modificatior[i].chars = chars;
-                modificatior[i].obj = m;
-                modificatior[i].Spawn();
+                    modificatior[i].chars = chars;
+                    modificatior[i].obj = m;
+                    modificatior[i].Spawn();
                 }
             }
             delay = 1 - (chars.attackSpeed / 100f);
             onAttack?.Invoke();
+        }
     }
 }

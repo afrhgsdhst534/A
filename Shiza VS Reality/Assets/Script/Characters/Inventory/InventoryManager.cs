@@ -28,8 +28,10 @@ public class InventoryManager : MonoBehaviour
     public void DropDown(Item item)
     {
         if (item.ally)
+        {
             items.Remove(item);
-        item.OnDrop();
+            item.OnDrop();
+        }
     }
     public void Sell(Item item)
     {

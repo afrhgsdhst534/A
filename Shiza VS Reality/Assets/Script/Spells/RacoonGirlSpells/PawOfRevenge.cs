@@ -25,7 +25,7 @@ public class PawOfRevenge : Spell
         {
             if (manager.spells[i] == this)
             {
-                value = manager.spellValue[i];
+                value = this.value;
             }
         }
         if (players != null && p.curMana>=5)
@@ -94,6 +94,6 @@ public class PawOfRevenge : Spell
     public override void Up()
     {
         base.Up();
-        manager.spellValue[transform.GetSiblingIndex()]++;
+        value++;
     }
 }

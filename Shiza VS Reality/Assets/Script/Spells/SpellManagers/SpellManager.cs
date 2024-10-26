@@ -9,8 +9,6 @@ public class SpellManager : MonoBehaviour
     public Base—haracteristic chars;
     [HideInInspector]
     public InputButtons buttons;
-    public List<int> spellValue = new List<int>();
-    public List<float> spellCooldown = new List<float>();
     private void Start()
     {
         buttons = InputButtons.instance;
@@ -26,9 +24,9 @@ public class SpellManager : MonoBehaviour
                 var children = spells[i].GetComponent<ButtonOnClick>().children;
                 try
                 {
-                    children.GetComponentInChildren<Text>().text = spellCooldown[i].ToString();
-                    spellCooldown[i] -= Time.deltaTime;
-                    var number = Mathf.Round(spellCooldown[i]);
+                    children.GetComponentInChildren<Text>().text = spells[i].cooldown.ToString();
+                    spells[i].cooldown -= Time.deltaTime;
+                    var number = Mathf.Round(spells[i].cooldown);
                     children.GetComponent<Text>().text = number.ToString();
                 }
                 catch { }
@@ -37,8 +35,6 @@ public class SpellManager : MonoBehaviour
     }
     public void Add(Spell spell)
     {
-        spellValue.Add(1);
-        spellCooldown.Add(spell.cooldown);
         canvasManager.SpellVizualization(spell);
     }
     public GameObject FindSpell(Spell spell)

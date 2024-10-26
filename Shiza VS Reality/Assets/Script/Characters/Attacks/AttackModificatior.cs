@@ -5,6 +5,7 @@ public abstract class AttackModificatior : MonoBehaviour
     public Base—haracteristic chars;
     [HideInInspector]
     public GameObject obj;
+    [HideInInspector]
     public virtual void Spawn()
     {
     }

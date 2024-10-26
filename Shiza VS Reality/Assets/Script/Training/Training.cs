@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 using Lean.Localization;
 using System.Threading.Tasks;
 using System.Collections.Generic;
@@ -23,10 +22,13 @@ public class Training : MonoBehaviour
     public IAttackObject ao;
     public AttackModificatior mod;
     public GameObject[] allToDestr;
-  public  float bossTime = 40;
+    public  float bossTime = 40;
     public GameObject boss;
     public Portals portal;
     public AudioSource source;
+    public Light l;
+    public Spell[] spells;
+    public IAttackObject attackObj;
     private void OnDisable() => portal.onTeleport -= OnTeleport;
     private void Awake()
     {
@@ -62,6 +64,7 @@ public class Training : MonoBehaviour
         if (bossTime <= 0)
         {
             boss.SetActive(true);
+            l.gameObject.SetActive(false);
         }
         if (ally.allAllyCharacters.Count >= 1)
         {

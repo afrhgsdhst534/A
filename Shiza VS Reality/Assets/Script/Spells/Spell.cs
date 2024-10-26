@@ -8,7 +8,7 @@ public abstract class Spell : MonoBehaviour
     public int LvlLimit;
     public bool active = false;
     public GameObject player;
-
+    public int value;
     public virtual void OnAwake(GameObject obj)
     {
         active = false;

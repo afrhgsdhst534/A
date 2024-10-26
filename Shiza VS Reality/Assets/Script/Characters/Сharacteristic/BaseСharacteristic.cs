@@ -88,7 +88,7 @@ public class BaseСharacteristic : MonoBehaviour
             StartCoroutine(Death());
         }
     }
-    IEnumerator  Death()
+    IEnumerator Death()
     {
         GetComponent<BaseСharacteristic>().enabled = false;
         GetComponent<Attack>().enabled = false;
@@ -96,6 +96,8 @@ public class BaseСharacteristic : MonoBehaviour
         GetComponent<MouseMovement>().enabled = false;
         GetComponent<MinionsMovement>().enabled = false;
         GetComponent<NavMeshAgent>().enabled = false;
+        GetComponent<Collider>().enabled = false;
+        GetComponent<Rigidbody>().isKinematic=true;
         yield return new WaitForSeconds(0.1f);
         switch (isAlly)
         {

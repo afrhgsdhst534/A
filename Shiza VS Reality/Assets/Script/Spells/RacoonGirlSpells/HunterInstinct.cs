@@ -17,10 +17,13 @@ public class HunterInstinct : Spell
     }
     public override void Cast()
     {
-        active = true;
-        bc.curMana -= 25;
-        bc.isCast = true;
-        sm.ChangeCursor(sm.badCursor);
+        if (cooldown < 1)
+        {
+            active = true;
+            bc.curMana -= 25;
+            bc.isCast = true;
+            sm.ChangeCursor(sm.badCursor);
+        }
     }
     private void Update()
     {
@@ -68,7 +71,7 @@ public class HunterInstinct : Spell
         {
             trans.GetComponent<BaseÑharacteristic>().DamageCalculations(bc.magicDamage, "magical");
         }
-        player.GetComponent<SpellManager>().spellCooldown[transform.GetSiblingIndex()] += 12;
+        cooldown += 12-value;
         sm.ChangeCursor(sm.defaultCursor);
         bc.isCast = false;
         active = false;

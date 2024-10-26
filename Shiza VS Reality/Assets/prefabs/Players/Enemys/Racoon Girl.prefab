@@ -6390,10 +6390,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be4530930ce3598479eed5b6db7b4255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modificatior:
-  - {fileID: 3808876333641923547, guid: 639ad0696ffb1f044881317b1e6433b2, type: 3}
+  modificatior: []
   animator: {fileID: 6066926915311463202}
   chars: {fileID: 6066926915311463201}
+  delay: 0
   attack: 1
   attackObject: {fileID: -9024424300145753634, guid: 6031a2b8a76433142bfb05846848ab69, type: 3}
   aOObj: {fileID: 572696640103163765}
@@ -6413,8 +6413,6 @@ MonoBehaviour:
   spells: []
   chars: {fileID: 0}
   buttons: {fileID: 0}
-  spellValue: 
-  spellCooldown: []
 --- !u!114 &6066926915311463214
 MonoBehaviour:
   m_ObjectHideFlags: 0
