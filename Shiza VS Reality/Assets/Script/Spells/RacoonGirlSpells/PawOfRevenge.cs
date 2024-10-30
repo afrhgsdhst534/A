@@ -8,7 +8,6 @@ public class PawOfRevenge : Spell
     {
         base.OnAwake(obj);
         LvlLimit = 10;
-        passive = true;
         manager = player.GetComponent<SpellManager>();
     }
     void AttackChanger()

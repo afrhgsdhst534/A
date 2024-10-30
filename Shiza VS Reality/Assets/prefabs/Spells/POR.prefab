@@ -392,11 +392,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   picture: {fileID: 21300000, guid: 030d61925e2f98f4d86e171153ec39e1, type: 3}
   cost: 0
-  passive: 1
+  passive: 0
   cooldown: 0
   LvlLimit: 0
   active: 1
   player: {fileID: 0}
+  value: 0
 --- !u!114 &6720875393658027624
 MonoBehaviour:
   m_ObjectHideFlags: 0

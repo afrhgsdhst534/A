@@ -8,32 +8,62 @@ public class BuffManager : MonoBehaviour
     public List<Buff> buffs;
     public void BuffAdd(Buff buff)
     {
-        buffs.Add(buff);
-        buff.OnAwake(gameObject);
         var b = Instantiate(buff);
+        buffs.Add(b);
+        b.OnAwake(gameObject);
+        b.player = gameObject;
         b.transform.SetParent(buffsObj.transform);
-        buff.GetComponent<Image>().sprite = buff.GetComponent<Image>().sprite;
+        b.GetComponent<Image>().sprite = buff.GetComponent<Image>().sprite;
         StartCoroutine(Next(b.gameObject));
-    }
-    IEnumerator Next(GameObject buff)
-    {
-        yield return new WaitForSeconds(0.01f);
-        try
-        {
-            buff.transform.localScale = Vector3.one;
-        }
-        catch { }
     }
     public void BuffRemove(Buff buff)
     {
+        var b = buff.GetType().Name;
         buff.OnRemove();
-        for (int i = 0; i < buffsObj.GetComponentsInChildren<Buff>().Length; ++i)
+        for (int i = 0; i < buffs.Count; i++)
         {
-            if (buffs[i] == buff)
+            if(buffs[i].GetType().Name == b)
             {
-                Destroy(buffsObj.GetComponentsInChildren<Buff>()[i].gameObject);
-                buffs.Remove(buff);
+                Destroy(buffs[i].gameObject);
+                buffs.RemoveAt(i);
             }
         }
     }
+    IEnumerator Next(GameObject buff)
+    {
+        yield return new WaitForSeconds(0.4f);
+        try
+        {
+            buff.GetComponent<RectTransform>().localScale = Vector3.one;
+            buff.transform.eulerAngles.Set(0,0,0);
+            buff.transform.position = new Vector3(buff.transform.position.x, buff.transform.position.y,0);
+        }
+        catch { }
+    }
+    public bool IFThereBuff(string name)
+    {
+        bool b = false;
+        for (int i = 0; i < buffs.Count; i++)
+        {
+            if (name== buffs[i].GetType().Name)
+            {
+                b = true;
+            }
+            else { b = false; }
+        }
+        return b;
+    }
+    public Buff BuffByName(string a)
+    {
+        Buff b = null;
+        for (int i = 0; i < buffs.Count; i++)
+        {
+            if (buffs[i].GetType().Name == a)
+            {
+                b = buffs[i];
+            }
+        }
+        return b;
+    }
+
 }

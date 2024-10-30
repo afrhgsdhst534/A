@@ -31,6 +31,10 @@ public class SpellManager : MonoBehaviour
                 }
                 catch { }
             }
+            if (spells[i].passive)
+            {
+                spells[i].Cast();
+            }
         }
     }
     public void Add(Spell spell)

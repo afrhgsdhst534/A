@@ -8,6 +8,7 @@ public abstract class AttackModificatior : MonoBehaviour
     [HideInInspector]
     public virtual void Spawn()
     {
+
     }
     public virtual void Damage(Base—haracteristic chars)
     {

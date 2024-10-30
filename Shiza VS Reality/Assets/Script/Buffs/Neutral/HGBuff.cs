@@ -8,6 +8,7 @@ public class HGBuff : Buff
     }
     public override void OnAwake(GameObject obj)
     {
+        base.OnAwake(obj);
         obj.GetComponent<BaseÑharacteristic>().armour += 5;
         player = obj;
     }

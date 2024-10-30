@@ -4908,6 +4908,7 @@ MonoBehaviour:
   isAlly: 0
   attackObj: {fileID: 527862165907121245, guid: c9a929d95d49bfc429cb379e378f55fc, type: 3}
   time: 0
+  curTime: 0
 --- !u!136 &-4293069521966599820
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4919,9 +4920,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 3.5
-  m_Height: 0
+  m_Height: 13.971437
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -1.6934723, z: 0}
 --- !u!82 &-900236512043417469
 AudioSource:
   m_ObjectHideFlags: 0

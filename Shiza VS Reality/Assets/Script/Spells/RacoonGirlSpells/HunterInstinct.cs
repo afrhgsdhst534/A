@@ -5,6 +5,7 @@ public class HunterInstinct : Spell
     private AllyCharacters allyC;
     Base—haracteristic bc;
     private SpritesManager sm;
+    private const string path = "Green hit";
     public override void OnAwake(GameObject obj)
     {
         base.OnAwake(obj);
@@ -19,10 +20,23 @@ public class HunterInstinct : Spell
     {
         if (cooldown < 1)
         {
+            if (player.GetComponent<MovementChanger>().movement == "ai")
+            {
+                switch (bc.isAlly)
+                {
+                    case true:
+                        var v = Random.Range(0, enemyC.allEnemyCharacters.Count - 1);
+                        Next(enemyC.allEnemyCharacters[v].transform);
+                        break;
+                    case false:
+                        var z = Random.Range(0, allyC.allAllyCharacters.Count - 1);
+                        Next(allyC.allAllyCharacters[z].transform);
+                        break;
+                }
+            }
             active = true;
             bc.curMana -= 25;
             bc.isCast = true;
-            sm.ChangeCursor(sm.badCursor);
         }
     }
     private void Update()
@@ -33,6 +47,7 @@ public class HunterInstinct : Spell
             {
                 case "arrow":
                 case "mouse":
+                    sm.ChangeCursor(sm.badCursor);
                     if (Input.GetMouseButtonDown(0))
                     {
                         var cam = Camera.main;
@@ -44,24 +59,12 @@ public class HunterInstinct : Spell
                         }
                     }
                     break;
-                case "ai":
-                    switch (bc.isAlly)
-                    {
-                        case true:
-                            var v = Random.Range(0, enemyC.allEnemyCharacters.Count-1);
-                            Next(enemyC.allEnemyCharacters[v].transform);
-                            break;
-                        case false:
-                            var z = Random.Range(0, allyC.allAllyCharacters.Count - 1);
-                            Next(allyC.allAllyCharacters[z].transform);
-                            break;
-                    }
-                    break;
             }
         }
     }
     void Next(Transform trans)
     {
+        Instantiate(Resources.Load<GameObject>(path), player.transform.position, Quaternion.identity);
         player.GetComponent<Animator>().SetTrigger("cast");
         var obj = trans.position;
         Vector3 vector = new Vector3(obj.x, obj.y, obj.z - 1);
@@ -71,8 +74,11 @@ public class HunterInstinct : Spell
         {
             trans.GetComponent<Base—haracteristic>().DamageCalculations(bc.magicDamage, "magical");
         }
-        cooldown += 12-value;
-        sm.ChangeCursor(sm.defaultCursor);
+        cooldown += 12 - value;
+        if (player.GetComponent<MovementChanger>().movement == "mouse" || player.GetComponent<MovementChanger>().movement == "arrow")
+        {
+            sm.ChangeCursor(sm.defaultCursor);
+        }
         bc.isCast = false;
         active = false;
     }

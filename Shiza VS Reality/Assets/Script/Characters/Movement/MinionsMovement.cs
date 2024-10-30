@@ -3,6 +3,7 @@ public class MinionsMovement : BaseMovement
 {
     public Transform target;
     private MovementChanger movement;
+    SpellManager spells;
     public override void Start()
     {
         base.Start();
@@ -11,9 +12,11 @@ public class MinionsMovement : BaseMovement
         var rb = GetComponent<Rigidbody>();
         rb.centerOfMass = Vector3.zero;
         rb.inertiaTensorRotation = Quaternion.identity;
+        spells = GetComponent<SpellManager>();
     }
     private void Update()
     {
+        #region Move
         switch (this.chars.isAlly && movement.movement == "ai"&&enabled==true)
         {
             case true:
@@ -71,6 +74,14 @@ public class MinionsMovement : BaseMovement
             {
                 this.chars.isAttacking = true;
                 attack.StartCoroutine(attack.OnAttack());
+            }
+        }
+        #endregion
+        for (int i = 0; i < spells.spells.Count; i++)
+        {
+            if (spells.spells[i].cooldown <= 0)
+            {
+                spells.spells[i].Cast();
             }
         }
     }

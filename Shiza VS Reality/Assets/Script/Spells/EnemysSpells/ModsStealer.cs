@@ -1,7 +1,7 @@
 using UnityEngine;using System.Threading.Tasks;
 public class ModsStealer : Spell
 {
-    public bool b;
+    public bool b=false;
     public string movement; AllyCharacters allyC;
     EnemyCharacters enemyC;
     SpritesManager spr;
@@ -12,12 +12,12 @@ public class ModsStealer : Spell
         enemyC = EnemyCharacters.instance;
         LvlLimit = 2;
         spr = SpritesManager.instance;
-        passive = true;
     }
     public override void Cast()
     {
-        if (cooldown < 1)
+        if (cooldown < 1&&player.GetComponent<BaseÑharacteristic>().curMana>=800)
         {
+            player.GetComponent<BaseÑharacteristic>().curMana -= 800;
             movement = player.GetComponent<MovementChanger>().movement;
             cooldown = 11 - value;
             b = true;
@@ -77,11 +77,14 @@ public class ModsStealer : Spell
     }
     void Next(GameObject obj)
     {
-        var m = obj.GetComponent<Attack>().modificatior;
-        player.GetComponent<Attack>().AddModificator(m[0]);
-        Destroy(m[0].gameObject);
-        m.RemoveAt(0);
-        spr.ChangeCursor(spr.defaultCursor);
+        if (obj.GetComponent<Attack>().modificatior.Count > 0)
+        {
+            var m = obj.GetComponent<Attack>().modificatior;
+            player.GetComponent<Attack>().AddModificator(m[0]);
+            Destroy(m[0].gameObject);
+            m.RemoveAt(0);
+            spr.ChangeCursor(spr.defaultCursor);
+        }
         b = false;
     }
     public override void Up()

@@ -9,4 +9,6 @@ public abstract class IAttackObject:MonoBehaviour
     public bool isAlly;
     public UIAttackObj attackObj;
     public float time;
+    [HideInInspector]
+    public float curTime;
 }

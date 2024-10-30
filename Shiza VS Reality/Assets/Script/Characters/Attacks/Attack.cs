@@ -85,6 +85,7 @@ public class Attack : MonoBehaviour
             yield return new WaitForSeconds(delay);
             animator.SetBool("attackB", false);
             chars.isAttacking = false;
+
         }
     }
     void Next()

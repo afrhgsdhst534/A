@@ -48,6 +48,7 @@ public class BaseСharacteristic : MonoBehaviour
     public Action onLvlUp;
     private AllyCharacters ally;
     private EnemyCharacters enemy;
+    public bool immortal;
     private void Start()
     {
         canvasManager = CanvasManager.instance;
@@ -90,32 +91,40 @@ public class BaseСharacteristic : MonoBehaviour
     }
     IEnumerator Death()
     {
-        GetComponent<BaseСharacteristic>().enabled = false;
-        GetComponent<Attack>().enabled = false;
-        GetComponent<ArrowMovement>().enabled = false;
-        GetComponent<MouseMovement>().enabled = false;
-        GetComponent<MinionsMovement>().enabled = false;
-        GetComponent<NavMeshAgent>().enabled = false;
-        GetComponent<Collider>().enabled = false;
-        GetComponent<Rigidbody>().isKinematic=true;
-        yield return new WaitForSeconds(0.1f);
-        switch (isAlly)
+        if (immortal)
         {
-            case true:
-                for (int i = 0;i< enemy.allEnemyCharacters.Count ; i++)
-                {
-                    enemy.allEnemyCharacters[i].GetComponent<BaseСharacteristic>().curLvl += maxLvl / enemy.allEnemyCharacters.Count + 1;
-                }
-                break;
-            case false:
-                for (int i = 0;i< ally.allAllyCharacters.Count; i++)
-                {
-                    ally.allAllyCharacters[i].GetComponent<BaseСharacteristic>().curLvl += maxLvl / ally.allAllyCharacters.Count + 1;
-                }
-                break;
+            curHp = maxHp;
+            immortal = false;
         }
-        Destroy(gameObject,1);
-        var animator= gameObject.GetComponent<Animator>();
-        animator.SetTrigger("death");
+        else
+        {
+            GetComponent<BaseСharacteristic>().enabled = false;
+            GetComponent<Attack>().enabled = false;
+            GetComponent<ArrowMovement>().enabled = false;
+            GetComponent<MouseMovement>().enabled = false;
+            GetComponent<MinionsMovement>().enabled = false;
+            GetComponent<NavMeshAgent>().enabled = false;
+            GetComponent<Collider>().enabled = false;
+            GetComponent<Rigidbody>().isKinematic = true;
+            yield return new WaitForSeconds(0.1f);
+            switch (isAlly)
+            {
+                case true:
+                    for (int i = 0; i < enemy.allEnemyCharacters.Count; i++)
+                    {
+                        enemy.allEnemyCharacters[i].GetComponent<BaseСharacteristic>().curLvl += maxLvl / enemy.allEnemyCharacters.Count + 1;
+                    }
+                    break;
+                case false:
+                    for (int i = 0; i < ally.allAllyCharacters.Count; i++)
+                    {
+                        ally.allAllyCharacters[i].GetComponent<BaseСharacteristic>().curLvl += maxLvl / ally.allAllyCharacters.Count + 1;
+                    }
+                    break;
+            }
+            Destroy(gameObject, 1);
+            var animator = gameObject.GetComponent<Animator>();
+            animator.SetTrigger("death");
+        }
     }
 }

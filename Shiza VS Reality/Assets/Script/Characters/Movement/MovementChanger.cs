@@ -21,7 +21,7 @@ public class MovementChanger : MonoBehaviour
     {
         allyCharacters = AllyCharacters.instance;
         enemyCharacters = EnemyCharacters.instance;
-        chars = GetComponent<BaseÑharacteristic>();
+        chars ??= GetComponent<BaseÑharacteristic>();
         //if char is ally
         if (chars.isAlly && !allyCharacters.allAllyCharacters.Contains(gameObject))
         {
