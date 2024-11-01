@@ -17,6 +17,35 @@ public class ModsStealer : Spell
     {
         if (cooldown < 1&&player.GetComponent<BaseÑharacteristic>().curMana>=800)
         {
+            if (player.GetComponent<MovementChanger>().movement == "ai")
+            {
+                if (!player.GetComponent<BaseÑharacteristic>().isAlly)
+                {
+                    var c = allyC.allAllyCharacters.Count;
+                    var r = Random.Range(0, c++);
+                    var m = allyC.allAllyCharacters[r].GetComponent<Attack>().modificatior;
+                    if (m.Count > 0)
+                    {
+                        player.GetComponent<Attack>().AddModificator(m[0]);
+                        Destroy(m[0].gameObject);
+                        m.RemoveAt(0);
+                        b = false;
+                    }
+                }
+                else
+                {
+                    var c = enemyC.allEnemyCharacters.Count;
+                    var r = Random.Range(0, c++);
+                    var m = enemyC.allEnemyCharacters[r].GetComponent<Attack>().modificatior;
+                    if (m.Count > 0)
+                    {
+                        player.GetComponent<Attack>().AddModificator(m[0]);
+                        Destroy(m[0].gameObject);
+                        m.RemoveAt(0);
+                        b = false;
+                    }
+                }
+            }
             player.GetComponent<BaseÑharacteristic>().curMana -= 800;
             movement = player.GetComponent<MovementChanger>().movement;
             cooldown = 11 - value;
@@ -38,37 +67,9 @@ public class ModsStealer : Spell
                         var cam = Camera.main;
                         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
                         RaycastHit hit;
-                        if (Physics.Raycast(ray, out hit, Mathf.Infinity, allyC.mask))
+                        if (Physics.Raycast(ray, out hit, Mathf.Infinity, allyC.mask) && player.GetComponent<BaseÑharacteristic>().isAlly != hit.transform.gameObject.GetComponent<BaseÑharacteristic>().isAlly)
                         {
                             Next(hit.transform.gameObject);
-                        }
-                    }
-                    break;
-                case "ai":
-                    if (!player.GetComponent<BaseÑharacteristic>().isAlly)
-                    {
-                        var c = allyC.allAllyCharacters.Count;
-                        var r = Random.Range(0, c++);
-                        var m = allyC.allAllyCharacters[r].GetComponent<Attack>().modificatior;
-                        if (m.Count > 0)
-                        {
-                            player.GetComponent<Attack>().AddModificator(m[0]);
-                            Destroy(m[0].gameObject);
-                            m.RemoveAt(0);
-                            b = false;
-                        }
-                    }
-                    else
-                    {
-                        var c = enemyC.allEnemyCharacters.Count;
-                        var r = Random.Range(0, c++);
-                        var m = enemyC.allEnemyCharacters[r].GetComponent<Attack>().modificatior;
-                        if (m.Count > 0)
-                        {
-                            player.GetComponent<Attack>().AddModificator(m[0]);
-                            Destroy(m[0].gameObject);
-                            m.RemoveAt(0);
-                            b=false;
                         }
                     }
                     break;

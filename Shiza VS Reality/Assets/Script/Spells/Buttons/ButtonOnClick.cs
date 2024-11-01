@@ -30,10 +30,6 @@ public class ButtonOnClick : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             plus.SetActive(false);
         }
     }
-    void OnDisable()
-    {
-        player.onLvlUp -= Show;
-    }
     private void Update()
     {
         if (GetComponent<Spell>().LvlLimit < 1)

@@ -26,9 +26,9 @@ public class Training : MonoBehaviour
     public GameObject boss;
     public Portals portal;
     public AudioSource source;
+    public AudioSource source1;
     public Light l;
-    public Spell[] spells;
-    public IAttackObject attackObj;
+    public GameObject lightD;
     private void OnDisable() => portal.onTeleport -= OnTeleport;
     private void Awake()
     {
@@ -63,6 +63,8 @@ public class Training : MonoBehaviour
         }
         if (bossTime <= 0)
         {
+            lightD.SetActive(true);
+            source1.Stop();
             boss.SetActive(true);
             l.gameObject.SetActive(false);
         }

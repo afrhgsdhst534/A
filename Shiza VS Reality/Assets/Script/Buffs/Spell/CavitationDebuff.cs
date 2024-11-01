@@ -1,10 +1,6 @@
 using UnityEngine;
 public class CavitationDebuff : Buff
 {
-    public override void OnAwake(GameObject obj)
-    {
-        base.OnAwake(obj);
-    }
     public override void PlusValue(int value)
     {
         base.PlusValue(value);

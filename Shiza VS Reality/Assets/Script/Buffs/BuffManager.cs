@@ -1,7 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Threading.Tasks;
 public class BuffManager : MonoBehaviour
 {
     public GameObject buffsObj;
@@ -14,12 +14,11 @@ public class BuffManager : MonoBehaviour
         b.player = gameObject;
         b.transform.SetParent(buffsObj.transform);
         b.GetComponent<Image>().sprite = buff.GetComponent<Image>().sprite;
-        StartCoroutine(Next(b.gameObject));
+        Next(b.gameObject);
     }
     public void BuffRemove(Buff buff)
     {
         var b = buff.GetType().Name;
-        buff.OnRemove();
         for (int i = 0; i < buffs.Count; i++)
         {
             if(buffs[i].GetType().Name == b)
@@ -29,9 +28,9 @@ public class BuffManager : MonoBehaviour
             }
         }
     }
-    IEnumerator Next(GameObject buff)
+    async void Next(GameObject buff)
     {
-        yield return new WaitForSeconds(0.4f);
+        await Task.Delay(100);
         try
         {
             buff.GetComponent<RectTransform>().localScale = Vector3.one;

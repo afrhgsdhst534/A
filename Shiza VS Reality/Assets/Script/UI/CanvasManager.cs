@@ -211,22 +211,6 @@ public class CanvasManager : MonoBehaviour
         obj.GetComponent<TextMesh>().text = value.ToString();
         Destroy(obj, 0.3f);
     }
-    public void SpellVizualization(Spell spell)
-    {
-        var SO = pickedChar.GetComponent<PlayersUIManager>().spells;
-        GameObject obj = Instantiate(spell.gameObject, SO.transform.position, Quaternion.identity);
-        pickedChar.GetComponent<SpellManager>().spells.Add(obj.GetComponent<Spell>());
-        obj.GetComponent<Spell>().OnAwake(pickedChar);
-        obj.GetComponent<ButtonOnClick>().CheckUp();
-        obj.transform.SetParent(SO.transform);
-        obj.GetComponent<Image>().sprite = spell.picture;
-        obj.GetComponent<ButtonOnClick>().spell = spell;
-        obj.transform.localScale = Vector3.one;
-        if (pickedChar.GetComponent<BaseÑharacteristic>().isAlly)
-        {
-            obj.GetComponent<ButtonOnClick>().ally = true;
-        }
-    }
     public void CreateBarrel(Item item)
     {
         var barrel = Instantiate(itemBarrel);

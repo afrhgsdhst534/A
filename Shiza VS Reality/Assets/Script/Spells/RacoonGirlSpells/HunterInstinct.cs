@@ -18,7 +18,7 @@ public class HunterInstinct : Spell
     }
     public override void Cast()
     {
-        if (cooldown < 1)
+        if (cooldown < 1&&bc.curMana>=25)
         {
             if (player.GetComponent<MovementChanger>().movement == "ai")
             {

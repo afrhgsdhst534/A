@@ -396,7 +396,10 @@ MonoBehaviour:
   cooldown: 0
   LvlLimit: 0
   active: 0
+  switchable: 1
   player: {fileID: 0}
+  value: 0
+  obj1: {fileID: 0}
 --- !u!114 &2250406120233060917
 MonoBehaviour:
   m_ObjectHideFlags: 0

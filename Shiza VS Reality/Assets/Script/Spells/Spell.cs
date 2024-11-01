@@ -7,6 +7,7 @@ public abstract class Spell : MonoBehaviour
     public float cooldown;
     public int LvlLimit;
     public bool active = false;
+    public bool switchable;
     public GameObject player;
     public int value;
     public virtual void OnAwake(GameObject obj)

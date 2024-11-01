@@ -396,6 +396,7 @@ MonoBehaviour:
   cooldown: 0
   LvlLimit: 0
   active: 1
+  switchable: 1
   player: {fileID: 0}
   value: 0
 --- !u!114 &6720875393658027624

@@ -79,7 +79,7 @@ public class MinionsMovement : BaseMovement
         #endregion
         for (int i = 0; i < spells.spells.Count; i++)
         {
-            if (spells.spells[i].cooldown <= 0)
+            if (spells.spells[i].cooldown <= 0&& !spells.spells[i].switchable)
             {
                 spells.spells[i].Cast();
             }

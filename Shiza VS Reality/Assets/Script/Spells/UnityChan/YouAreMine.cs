@@ -88,6 +88,8 @@ public class YouAreMine : Spell
         }
         player.GetComponent<Animator>().SetTrigger("cast");
         manager.ChangeCursor(manager.defaultCursor);
+        cost = 600 - value * 5;
+        cooldown = 20;
         bc.isCast = false;
         active = false;
     }

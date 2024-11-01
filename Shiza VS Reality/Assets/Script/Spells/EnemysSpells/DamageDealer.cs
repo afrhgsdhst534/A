@@ -1,8 +1,9 @@
 using UnityEngine;
-using System.Collections;
+using System.Threading.Tasks;
 public class DamageDealer : Spell
 {
     Attack a;
+    int i;
     public override void OnAwake(GameObject obj)
     {
         base.OnAwake(obj);
@@ -11,12 +12,16 @@ public class DamageDealer : Spell
     }
     private void A()
     {
-        if (player.GetComponent<Attack>().attackObject != null)
-            StartCoroutine(Next());
+        if (player.GetComponent<Attack>().attackObject != null&&i<=0)
+        {
+            Next();
+        }
+        i--;
     }
-    IEnumerator Next()
+    async void Next()
     {
-        yield return new WaitForSeconds(a.delay);
+        await Task.Delay(900);
+        i =1;
         a = player.GetComponent<Attack>();
         a.attackObject.bc = a.chars;
         a.attackObject.trans = a.transform;
