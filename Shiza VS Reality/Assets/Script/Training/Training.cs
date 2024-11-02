@@ -2,6 +2,7 @@ using UnityEngine;
 using Lean.Localization;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 public class Training : MonoBehaviour
 {
     AllyCharacters ally;
@@ -20,15 +21,18 @@ public class Training : MonoBehaviour
     public GameObject but1;
     public GameObject[] objs;
     public IAttackObject ao;
+    public IAttackObject atObj;
     public AttackModificatior mod;
     public GameObject[] allToDestr;
-    public  float bossTime = 40;
+    public float bossTime = 40;
     public GameObject boss;
     public Portals portal;
     public AudioSource source;
     public AudioSource source1;
     public Light l;
     public GameObject lightD;
+    public GameObject racoon;
+    public GameObject uiBut;
     private void OnDisable() => portal.onTeleport -= OnTeleport;
     private void Awake()
     {
@@ -57,6 +61,10 @@ public class Training : MonoBehaviour
     }
     private void Update()
     {
+        if (racoon == null)
+        {
+            uiBut.SetActive(true);
+        }
         if (allToDestr[1] == null)
         {
             bossTime -= Time.deltaTime;
@@ -143,5 +151,13 @@ public class Training : MonoBehaviour
     public void Previous()
     {
         stringI--;
+    }
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

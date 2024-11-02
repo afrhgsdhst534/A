@@ -6283,13 +6283,13 @@ MonoBehaviour:
   armour: 25
   curHp: 1000000000
   maxHp: 100
-  attack: 50
+  attack: 88
   magicDamage: 50
   attackSpeed: 0
   manaRegen: 1
   money: 1000000
   moneyPerSecond: 0
-  attackRange: 11
+  attackRange: 70
   isAlly: 0
   isAttacking: 0
   canMove: 1
@@ -6299,6 +6299,7 @@ MonoBehaviour:
   maxLvl: 100
   lvlPoints: 0
   targets: []
+  immortal: 0
 --- !u!195 &6066926915311463206
 NavMeshAgent:
   m_ObjectHideFlags: 0

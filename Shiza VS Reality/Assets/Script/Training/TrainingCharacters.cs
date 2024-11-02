@@ -13,7 +13,7 @@ public class TrainingCharacters : MonoBehaviour
         {
             var a = Instantiate(tr.chars[0], gameObject.transform.position, Quaternion.identity);
             a.GetComponent<BaseÑharacteristic>().curLvl += tr.lvl;
-            a.GetComponent<Attack>().AddModificator(tr.mod);
+            a.GetComponent<Attack>().AttackObjChanger(tr.atObj);
             Destroy(gameObject);
         }
     }
