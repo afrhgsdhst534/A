@@ -33,7 +33,7 @@ public class InputButtons : MonoBehaviour
         secondSpell = KeyCode.X;
         thirdSpell = KeyCode.C;
         fourthSpell = KeyCode.V;
-        attack = KeyCode.KeypadEnter;
+        attack = KeyCode.Space;
         instance = this;
     }
 }

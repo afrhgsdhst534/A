@@ -52,4 +52,8 @@ public class MainPanel : MonoBehaviour
     {
         Application.Quit();
     }
+    public void Info()
+    {
+        System.Diagnostics.Process.Start(Application.streamingAssetsPath);
+    }
 }

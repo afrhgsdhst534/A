@@ -89,7 +89,6 @@ public class HunterInstinct : Spell
     }
     void Buffed(int value)
     {
-        bc.speed += value;
-        bc.attack += value;
+        cooldown--;
     }
 }

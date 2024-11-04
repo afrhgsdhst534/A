@@ -1,4 +1,4 @@
-using UnityEngine;
+using UnityEngine;using System;
 public class GamePlaySettings : MonoBehaviour
 {
     public bool arrowIsFollowMouse;
@@ -6,5 +6,6 @@ public class GamePlaySettings : MonoBehaviour
     public void Awake()
     {
         instance = this;
+        arrowIsFollowMouse = Convert.ToBoolean(PlayerPrefs.GetInt("AIFM"));
     }
 }
