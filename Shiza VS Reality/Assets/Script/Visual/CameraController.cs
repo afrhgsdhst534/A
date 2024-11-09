@@ -15,31 +15,34 @@ public class CameraController : MonoBehaviour
     }
     private void Start()
     {
-        ally = AllyCharacters.instance;
     }
     void Update()
     {
-        if (ally.allAllyCharacters.Count>0)
+        ally ??= AllyCharacters.instance;
+        if (ally != null)
         {
-            cinema.Follow = ally.allAllyCharacters[0].transform;
+            if (ally.allAllyCharacters.Count > 0)
+            {
+                cinema.Follow = ally.allAllyCharacters[0].transform;
+            }
+            if (Input.GetAxis("Mouse ScrollWheel") > 0f || Input.GetKeyDown(KeyCode.Equals)) // forward
+            {
+                ScrollDown();
+            }
+            if (Input.GetAxis("Mouse ScrollWheel") < 0f || Input.GetKeyDown(KeyCode.Minus)) // backwards
+            {
+                ScrollUp();
+            }
+            var tr = transform.position;
+            if (Input.GetKey(KeyCode.DownArrow))
+                transform.position = new Vector3(tr.x, tr.y, tr.z - 0.1f);
+            if (Input.GetKey(KeyCode.UpArrow))
+                transform.position = new Vector3(tr.x, tr.y, tr.z + 0.1f);
+            if (Input.GetKey(KeyCode.LeftArrow))
+                transform.position = new Vector3(tr.x - 0.1f, tr.y, tr.z);
+            if (Input.GetKey(KeyCode.RightArrow))
+                transform.position = new Vector3(tr.x + 0.1f, tr.y, tr.z);
         }
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f|| Input.GetKeyDown(KeyCode.Equals)) // forward
-        {
-            ScrollDown();
-        }
-        if (Input.GetAxis("Mouse ScrollWheel") < 0f|| Input.GetKeyDown(KeyCode.Minus)) // backwards
-        {
-            ScrollUp();
-        }
-        var tr = transform.position;
-        if (Input.GetKey(KeyCode.DownArrow))
-            transform.position = new Vector3(tr.x, tr.y, tr.z-0.1f);
-        if (Input.GetKey(KeyCode.UpArrow))
-            transform.position = new Vector3(tr.x, tr.y, tr.z + 0.1f);
-        if (Input.GetKey(KeyCode.LeftArrow))
-            transform.position = new Vector3(tr.x - 0.1f, tr.y, tr.z);
-        if (Input.GetKey(KeyCode.RightArrow))
-            transform.position = new Vector3(tr.x+0.1f, tr.y, tr.z);
     }
     public async void ChangeUpdate(bool isLate)
     {

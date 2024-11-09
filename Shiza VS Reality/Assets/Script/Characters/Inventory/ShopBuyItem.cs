@@ -3,7 +3,7 @@ public class ShopBuyItem : MonoBehaviour
 {
     private CanvasManager canvasManager;
     [SerializeField]
-    private Item item;
+    public Item item;
     private GameObject player;
     void Start()
     {

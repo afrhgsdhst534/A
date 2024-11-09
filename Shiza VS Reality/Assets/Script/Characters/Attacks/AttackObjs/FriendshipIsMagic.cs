@@ -36,7 +36,7 @@ public class FriendshipIsMagic : IAttackObject
         for (float i = 0; i < 0.9f; i+=0.1f)
         {
             yield return new WaitForSeconds(0.1f);
-            bc.DamageCalculations(-this.bc.attack/9,"physical");
+            bc.DamageCalculations(-this.bc.attack/9,"true");
         }
     }
 }

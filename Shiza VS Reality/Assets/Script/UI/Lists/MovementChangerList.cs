@@ -1,3 +1,4 @@
+using UnityEngine;
 public class MovementChangerList : AList
 {
     private CanvasManager can;
@@ -15,14 +16,17 @@ public class MovementChangerList : AList
         {
             case 0:
                 move.movement = "arrow";
+                PlayerPrefs.SetString("move", "arrow");
                 move.Next();
                 break;
             case 1:
                 move.movement = "mouse";
+                PlayerPrefs.SetString("move", "mouse");
                 move.Next();
                 break;
             case 2:
                 move.movement = "ai";
+                PlayerPrefs.SetString("move", "ai");
                 move.Next();
                 break;
         }

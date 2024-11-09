@@ -1,8 +1,9 @@
 using UnityEngine;
+using System.Collections.Generic;
 public class Hides : MonoBehaviour
 {
-    public GameObject[] objs;
-    public GameObject[] objs1;
+    public List<GameObject> objs;
+    public List<GameObject> objs1;
     CanvasManager can;
     void OnTriggerExit(Collider other)
     {
@@ -20,7 +21,7 @@ public class Hides : MonoBehaviour
     }
     public void Hide()
     {
-        for (int i = 0; i < objs.Length; i++)
+        for (int i = 0; i < objs.Count; i++)
         {
             objs[i].SetActive(!objs[i].activeInHierarchy);
         }
@@ -32,11 +33,11 @@ public class Hides : MonoBehaviour
     }
     public void TrueFalse()
     {
-        for (int i = 0; i < objs.Length; i++)
+        for (int i = 0; i < objs.Count; i++)
         {
             objs[i].SetActive(true);
         }
-        for (int i = 0; i < objs1.Length; i++)
+        for (int i = 0; i < objs1.Count; i++)
         {
             objs1[i].SetActive(false);
         }

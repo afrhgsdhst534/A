@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 public class ButtonsPM : MonoBehaviour
 {
     public static ButtonsPM instance;
@@ -11,6 +12,7 @@ public class ButtonsPM : MonoBehaviour
     private Base—haracteristic player;
     private InventoryManager inventory;
     public GameObject[] bans;
+    public List<Item> items;
     void Awake()
     {
         instance = this;

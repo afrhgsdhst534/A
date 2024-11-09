@@ -98,6 +98,8 @@ public class PlayersUIManager : MonoBehaviour
             a++;
             lvlCount.text = a.ToString();
             chars.LvlUp();
+            var move = GetComponent<RelativeObjs>();
+            move.OnLvlUp();
         }
     }
     public void Show()

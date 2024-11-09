@@ -30,7 +30,6 @@ public abstract class BaseMovement : MonoBehaviour
         animator ??= GetComponent<Animator>();
         speed = 1 + (chars.speed / 100f);
         animator.SetFloat("walkF", speed);
-
         StartCoroutine(Check());
     }
     private void OnEnable()

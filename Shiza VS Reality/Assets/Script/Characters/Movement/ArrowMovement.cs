@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 public class ArrowMovement : BaseMovement
 {
     private InputButtons inputButtons;
@@ -9,6 +10,7 @@ public class ArrowMovement : BaseMovement
     public bool s;
     public bool d;
     GamePlaySettings settings;
+    public Button n;
     public override void Start()
     {
         base.Start();

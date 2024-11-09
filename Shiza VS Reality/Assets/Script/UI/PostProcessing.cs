@@ -3,6 +3,7 @@ using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
 public class PostProcessing : MonoBehaviour
 {
+    public PostProcessing a;
     public Slider SE;
     public Slider[] WB;
     public Slider[] RGB;
@@ -12,6 +13,21 @@ public class PostProcessing : MonoBehaviour
     {
         volume = Camera.main.GetComponent<PostProcessVolume>();
         volume.profile.TryGetSettings(out cg);
+        SE.value = PlayerPrefs.GetFloat("saturation");
+        WB[0].value = PlayerPrefs.GetFloat("temperature");
+        WB[1].value = PlayerPrefs.GetFloat("tint");
+        RGB[0].value = PlayerPrefs.GetFloat("mixerRedOutRedIn");
+        RGB[1].value = PlayerPrefs.GetFloat("mixerRedOutGreenIn");
+        RGB[2].value = PlayerPrefs.GetFloat("mixerRedOutBlueIn");
+    }
+    public void Save()
+    {
+        PlayerPrefs.SetFloat("saturation", SE.value);
+        PlayerPrefs.SetFloat("temperature", WB[0].value);
+        PlayerPrefs.SetFloat("tint", WB[1].value);
+        PlayerPrefs.SetFloat("mixerRedOutRedIn", RGB[0].value);
+        PlayerPrefs.SetFloat("mixerRedOutGreenIn", RGB[1].value);
+        PlayerPrefs.SetFloat("mixerRedOutBlueIn", RGB[2].value);
     }
     private void Update()
     {

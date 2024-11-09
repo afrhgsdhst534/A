@@ -12,9 +12,9 @@ public class Modificateble : MonoBehaviour
     public SpellManager s;
     void Start()
     {
-         a = gameObject.GetComponent<Attack>();
-         b = GetComponent<BuffManager>();
-         s = GetComponent<SpellManager>();
+        a = gameObject.GetComponent<Attack>();
+        b = GetComponent<BuffManager>();
+        s = GetComponent<SpellManager>();
         N();
     }
     async void N()
@@ -36,5 +36,9 @@ public class Modificateble : MonoBehaviour
         {
             b.BuffAdd(buffs[i]);
         }
+    }
+    private void OnDestroy()
+    {
+        PlayerPrefs.SetInt("invite2", 1);
     }
 }

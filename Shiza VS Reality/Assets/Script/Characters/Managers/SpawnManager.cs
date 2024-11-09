@@ -18,6 +18,10 @@ public class SpawnManager : MonoBehaviour
         if (x > 0 || y > 0)
             SpawnPlanes(x, y);
     }
+    public void Spawn()
+    {
+        spawn = true;
+    }
     private void Update()
     {
         SpawnEnemy();
@@ -31,7 +35,13 @@ public class SpawnManager : MonoBehaviour
             {
                 int ranE = Random.Range(0, enemys.Count);
                 int ranN = Random.Range(1, 9);
-                Instantiate(enemys[ranE], RandVec(ranN), Quaternion.identity);
+                var c = Instantiate(enemys[ranE], RandVec(ranN), Quaternion.identity);
+                c.GetComponent<BaseÑharacteristic>().isAlly = false;
+                c.GetComponent<Attack>().AttackObjChanger(c.GetComponent<RelativeObjs>().attackObj);
+                c.GetComponent<Rigidbody>().isKinematic = true;
+                var m = c.GetComponent<MovementChanger>();
+                m.movement = "ai";
+                m.Next();
                 curTime = maxTime;
             }
         }

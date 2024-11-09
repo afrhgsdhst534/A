@@ -24,7 +24,7 @@ public class CanvasManager : MonoBehaviour
     public List<Item> allItems; float clicked;
     float clicktime;
     public float clickdelay = 0.1f;
-
+    public GameObject enableOnLvl;
     private void Awake()
     {
         instance = this;
@@ -86,12 +86,13 @@ public class CanvasManager : MonoBehaviour
     public void PickCharacter(GameObject obj)
     {
         if (obj.GetComponent<BaseÑharacteristic>() != null)
-            if (!obj.GetComponent<BaseÑharacteristic>().isCast)
-                pickedChar = obj;
-        spell = obj.GetComponent<SpellManager>();
-        mana = pickedChar.GetComponent<PlayersUIManager>().mana;
-        hp = pickedChar.GetComponent<PlayersUIManager>().hp;
-        inventory = pickedChar.GetComponent<InventoryManager>();
+        {
+            pickedChar = obj;
+            spell = obj.GetComponent<SpellManager>();
+            mana = pickedChar.GetComponent<PlayersUIManager>().mana;
+            hp = pickedChar.GetComponent<PlayersUIManager>().hp;
+            inventory = pickedChar.GetComponent<InventoryManager>();
+        }
     }
     private void Update()
     {
@@ -131,7 +132,7 @@ public class CanvasManager : MonoBehaviour
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, Mathf.Infinity, allyCharacters.mask) && !pickedChar.GetComponent<BaseÑharacteristic>().isCast)
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, allyCharacters.mask))
                 {
                     PickedChar(hit.transform.gameObject);
                 }

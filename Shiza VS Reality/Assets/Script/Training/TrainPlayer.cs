@@ -20,6 +20,7 @@ public class TrainPlayer : MonoBehaviour
     {
         if (b)
             l.color = new Color(l.color.r, l.color.g - 0.4f, l.color.b - 0.4f);
+        transform.localScale = new Vector3(transform.position.x-0.1f, transform.position.y - 0.1f, transform.position.z - 0.1f);
     }
     private void OnTriggerEnter(Collider collision)
     {

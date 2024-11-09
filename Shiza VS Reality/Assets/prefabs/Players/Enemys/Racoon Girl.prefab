@@ -182,8 +182,8 @@ GameObject:
   - component: {fileID: 572696639534594275}
   - component: {fileID: 572696639534594276}
   - component: {fileID: 572696639534594274}
-  - component: {fileID: 572696639534594273}
   - component: {fileID: 1185486001228327626}
+  - component: {fileID: 4549679190708574209}
   m_Layer: 5
   m_Name: Shop
   m_TagString: Untagged
@@ -293,7 +293,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 572696639534594273}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Hides, Assembly-CSharp
         m_MethodName: Hide
         m_Mode: 1
@@ -305,24 +305,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &572696639534594273
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 572696639534594278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cae40fd36a34894682c0acea7c606a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objs:
-  - {fileID: 0}
-  - {fileID: 0}
-  objs1:
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &1185486001228327626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,6 +315,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1158b78ff5ccd6a4784ca2e9cd3bb889, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4549679190708574209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572696639534594278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b91da52b85b62124b867b7bef5fde97f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &572696640103163765
@@ -6289,7 +6283,7 @@ MonoBehaviour:
   manaRegen: 1
   money: 1000000
   moneyPerSecond: 0
-  attackRange: 70
+  attackRange: 9
   isAlly: 0
   isAttacking: 0
   canMove: 1
@@ -6487,6 +6481,9 @@ MonoBehaviour:
   - {fileID: 3808876333641923547, guid: 639ad0696ffb1f044881317b1e6433b2, type: 3}
   - {fileID: -3231743491050302707, guid: 639800f22ab76bb42a9800a2b14ecc7f, type: 3}
   us: {fileID: 9167865110677430219}
+  deadly: []
+  defendly: []
+  books: []
 --- !u!114 &3302733062076754883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7896,13 +7893,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1784708951740886180, guid: 98b544c19066719419648004a88d4f83, type: 3}
       propertyPath: m_Text
-      value: "\u0421\u041F - \u0418\u0433\u0440\u0430 \u043F\u0440\u0435\u0432\u0440\u0430\u0449\u0430\u0435\u0442\u0441\u044F
-        \u0432 \u041F\u0430\u043A\u043C\u0430\u043D\u0430 - \u0432\u0430\u043C \u043D\u0443\u0436\u043D\u043E
-        \u0441\u043E\u0431\u0440\u0430\u0442\u044C \u0430\u0440\u0442\u0435\u0444\u0430\u043A\u0442\u044B
-        \u0437\u0430 \u043E\u0433\u0440\u0430\u043D\u0438\u0447\u0435\u043D\u043D\u043E\u0435
-        \u0432\u0440\u0435\u043C\u044F, \u043F\u043E\u0441\u043B\u0435 \u0447\u0435\u0433\u043E
-        \u0441\u044A\u0435\u0441\u0442\u044C \u043C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0435
-        \u043A\u043E\u043B-\u0432\u043E \u043F\u0435\u0440\u0441\u043E\u043D\u0430\u0436\u0435\u0439."
+      value: "\u0421\u041F - \u041F\u0440\u0438 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D\u0438\u0438
+        \u043E\u043A\u0440\u0443\u0436\u0430\u044E\u0449\u0430\u044F \u0441\u0440\u0435\u0434\u0430
+        \u043C\u0433\u043D\u043E\u0432\u0435\u043D\u043D\u043E \u043C\u0435\u043D\u044F\u0435\u0442\u0441\u044F,
+        \u0438 \u0432\u0430\u043C \u043D\u0443\u0436\u043D\u043E \u043C\u0433\u043D\u043E\u0432\u0435\u043D\u043D\u043E
+        \u0441\u0440\u0435\u0430\u0433\u0438\u0440\u043E\u0432\u0430\u0442\u044C
+        \u043D\u0430 \u0438\u0437\u043C\u0435\u043D\u0435\u043D\u0438\u044F - \u0432\u0430\u043C
+        \u043D\u0443\u0436\u043D\u043E \u0441\u043E\u0431\u0440\u0430\u0442\u044C
+        \u043C\u043E\u043D\u0435\u0442\u043A\u0438 \u0437\u0430 \u043E\u0433\u0440\u0430\u043D\u0438\u0447\u0435\u043D\u043D\u043E\u0435
+        \u0432\u0440\u0435\u043C\u044F \u0438 \u043F\u0440\u0438 \u044D\u0442\u043E\u043C
+        \u043D\u0435 \u0443\u043C\u0435\u0440\u0435\u0442\u044C(\u0443\u0441\u043B\u043E\u0432\u0438\u0435
+        \u0441\u0440\u0430\u0431\u0430\u0442\u044B\u0432\u0430\u043D\u0438\u044F
+        \u0431\u043E\u043B\u0435\u0435 1 \u0432\u0440\u0430\u0433\u0430 \u043D\u0430
+        \u0441\u0446\u0435\u043D\u0435)"
       objectReference: {fileID: 0}
     - target: {fileID: 1784708951740886181, guid: 98b544c19066719419648004a88d4f83, type: 3}
       propertyPath: m_Pivot.x

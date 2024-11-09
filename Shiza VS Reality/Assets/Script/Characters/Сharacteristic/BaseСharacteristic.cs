@@ -6,6 +6,7 @@ using UnityEngine.AI;
 [SelectionBase]
 public class BaseСharacteristic : MonoBehaviour
 {
+    #region vars
     [Space]
     [Header("Stats")]
     [Space]
@@ -49,6 +50,7 @@ public class BaseСharacteristic : MonoBehaviour
     private AllyCharacters ally;
     private EnemyCharacters enemy;
     public bool immortal;
+    #endregion
     private void Start()
     {
         canvasManager = CanvasManager.instance;
@@ -74,17 +76,27 @@ public class BaseСharacteristic : MonoBehaviour
         lvlPoints++;
         onLvlUp?.Invoke();
     }
-    public void DamageCalculations(int damage,string type)
+    public void DamageCalculations(int damage, string type)
     {
         switch (type)
         {
-            case "physical": curHp -= damage - armour; break;
-            case "magical": curHp -= damage - magicResist; break;
-            case "true": curHp -= damage; break;
-            default: curHp -= damage; break;
+            case "physical":
+                if (damage > armour) { curHp -= damage - armour; canvasManager.Popup(damage - armour, gameObject); }
+                else { curHp -= hpRegen / 2; canvasManager.Popup(hpRegen / 2, gameObject); }
+                break;
+            case "magical":
+                if (damage > armour) { curHp -= damage - magicResist; canvasManager.Popup(damage - magicResist, gameObject); }
+                else { curHp -= hpRegen / 2; canvasManager.Popup(hpRegen / 2, gameObject); }
+                break;
+            case "true":
+                curHp -= damage;
+                canvasManager.Popup(damage, gameObject);
+                break;
+            default: curHp -= damage;
+                canvasManager.Popup(damage, gameObject);
+                break;
         }
-        canvasManager.Popup(damage, gameObject);
-        if(curHp < 1)
+        if (curHp < 1)
         {
             StartCoroutine(Death());
         }
@@ -112,13 +124,13 @@ public class BaseСharacteristic : MonoBehaviour
                 case true:
                     for (int i = 0; i < enemy.allEnemyCharacters.Count; i++)
                     {
-                        enemy.allEnemyCharacters[i].GetComponent<BaseСharacteristic>().curLvl += maxLvl / enemy.allEnemyCharacters.Count + 1;
+                        enemy.allEnemyCharacters[i].GetComponent<BaseСharacteristic>().curLvl += (maxLvl/5) / enemy.allEnemyCharacters.Count + 1;
                     }
                     break;
                 case false:
                     for (int i = 0; i < ally.allAllyCharacters.Count; i++)
                     {
-                        ally.allAllyCharacters[i].GetComponent<BaseСharacteristic>().curLvl += maxLvl / ally.allAllyCharacters.Count + 1;
+                        ally.allAllyCharacters[i].GetComponent<BaseСharacteristic>().curLvl += (maxLvl/5) / ally.allAllyCharacters.Count + 1;
                     }
                     break;
             }

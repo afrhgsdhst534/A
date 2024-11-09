@@ -5,6 +5,7 @@ public class Projectile : IAttackObject
     private void OnEnable()
     {
         Destroy(gameObject, 0.9f + time);
+        bc.attackRange += 75;
         float tx = trans.position.x;
         float ty = trans.position.y;
         float tz = trans.position.z;

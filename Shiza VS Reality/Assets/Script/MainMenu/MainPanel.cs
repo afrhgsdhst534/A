@@ -14,6 +14,10 @@ public class MainPanel : MonoBehaviour
         text = slider.transform.GetChild(0).GetComponent<Text>();
     }
     #region PlayScene
+    public void Load(int i)
+    {
+        SceneManager.LoadScene(i);
+    }
     public void Play()
     {
         if (slider.gameObject!=null)

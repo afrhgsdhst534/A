@@ -2,38 +2,54 @@ using UnityEngine;
 public class InputButtons : MonoBehaviour
 {
     public static InputButtons instance;
+    [HideInInspector]
     public KeyCode attack;
-    public KeyCode firstSpell = KeyCode.Z;
-    public KeyCode secondSpell = KeyCode.X;
-    public KeyCode thirdSpell = KeyCode.C;
-    public KeyCode fourthSpell = KeyCode.V;
+    [HideInInspector]
+    public KeyCode firstSpell ;
+    [HideInInspector]
+    public KeyCode secondSpell ;
+    [HideInInspector]
+    public KeyCode thirdSpell ;
+    [HideInInspector]
+    public KeyCode fourthSpell;
+    [HideInInspector]
     public KeyCode item1;
+    [HideInInspector]
     public KeyCode item2;
+    [HideInInspector]
     public KeyCode item3;
+    [HideInInspector]
     public KeyCode item4;
+    [HideInInspector]
     public KeyCode item5;
+    [HideInInspector]
     public KeyCode item6;
-    public KeyCode w = KeyCode.W;
-    public KeyCode a = KeyCode.A;
-    public KeyCode s = KeyCode.S;
-    public KeyCode d = KeyCode.D;
-    public void OnEnable()
+    [HideInInspector]
+    public KeyCode w ;
+    [HideInInspector]
+    public KeyCode a ;
+    [HideInInspector]
+    public KeyCode s ;
+    [HideInInspector]
+    public KeyCode d ;
+    public void Awake()
     {
-        w = KeyCode.W;
-        a = KeyCode.A;
-        s = KeyCode.S;
-        d = KeyCode.D;
-        item1 = KeyCode.Alpha1;
-        item2 = KeyCode.Alpha2;
-        item3 = KeyCode.Alpha3;
-        item4 = KeyCode.Alpha4;
-        item5 = KeyCode.Alpha5;
-        item6 = KeyCode.Alpha6;
-        firstSpell = KeyCode.Z;
-        secondSpell = KeyCode.X;
-        thirdSpell = KeyCode.C;
-        fourthSpell = KeyCode.V;
-        attack = KeyCode.Space;
+        //Можно запихнуть  в свою библиотеку
         instance = this;
+        w = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("W"));
+        a = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("A"));
+        s = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("S"));
+        d = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("D"));
+        item1 = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ONE"));
+        item2 = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("TWO"));
+        item3 = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("THREE"));
+        item4 = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("FOUR"));
+        item5 = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("FIVE"));
+        item6 = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("SIX"));
+        firstSpell = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Z"));
+        secondSpell = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("X"));
+        thirdSpell = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("C"));
+        fourthSpell = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("V"));
+        attack = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ATTACK"));
     }
 }
