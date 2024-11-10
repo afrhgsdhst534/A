@@ -33993,6 +33993,7 @@ GameObject:
   - component: {fileID: 636688826542506432}
   - component: {fileID: 636688826542506433}
   - component: {fileID: 636688826542506434}
+  - component: {fileID: 7141009018451061050}
   m_Layer: 6
   m_Name: Wizard
   m_TagString: Player
@@ -34150,6 +34151,7 @@ MonoBehaviour:
   a: 0
   s: 0
   d: 0
+  n: {fileID: 0}
 --- !u!114 &636688826542506490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34316,6 +34318,19 @@ MonoBehaviour:
   items: []
   inventory: {fileID: 636688826611083156}
   obj: {fileID: 0}
+--- !u!114 &7141009018451061050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 636688826542506435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9becb61b1dfdfbc46ac6d28bde04621f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: invite7
 --- !u!1 &636688826606837988
 GameObject:
   m_ObjectHideFlags: 0

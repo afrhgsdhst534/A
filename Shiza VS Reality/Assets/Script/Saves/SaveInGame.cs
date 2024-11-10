@@ -30,7 +30,7 @@ public class SaveInGame : MonoBehaviour
     }
     async void A()
     {
-        await Task.Delay(100);
+        await Task.Delay(400);
         move = can.pickedChar.GetComponent<MovementChanger>();
         move.movement = PlayerPrefs.GetString("move");
         move.Next();

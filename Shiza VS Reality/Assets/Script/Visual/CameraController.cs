@@ -13,12 +13,9 @@ public class CameraController : MonoBehaviour
         cinema = GetComponentInChildren<CinemachineVirtualCamera>();
         brain = GetComponentInChildren<CinemachineBrain>();
     }
-    private void Start()
-    {
-    }
     void Update()
     {
-        ally ??= AllyCharacters.instance;
+        ally = AllyCharacters.instance;
         if (ally != null)
         {
             if (ally.allAllyCharacters.Count > 0)

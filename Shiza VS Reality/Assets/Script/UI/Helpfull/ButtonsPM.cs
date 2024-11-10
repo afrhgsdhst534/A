@@ -8,7 +8,7 @@ public class ButtonsPM : MonoBehaviour
     public GameObject AllAttackObj;
     public GameObject Shop;
     public GameObject shopButtons;
-    private CanvasManager canvasManager;
+    public CanvasManager canvasManager;
     private Base—haracteristic player;
     private InventoryManager inventory;
     public GameObject[] bans;

@@ -6,6 +6,7 @@ using UnityEngine.AI;
 [SelectionBase]
 public class BaseСharacteristic : MonoBehaviour
 {
+    public float negativeAttack;
     #region vars
     [Space]
     [Header("Stats")]
@@ -62,17 +63,17 @@ public class BaseСharacteristic : MonoBehaviour
         curLvl -= maxLvl;
         maxLvl += 25;
         speed += 1;
-        curMana += 5;
-        maxMana += 5;
-        magicResist += 2;
-        hpRegen++;
-        manaRegen++;
-        armour += 2;
-        curHp += 5;
-        maxHp += 5;
-        attack += 2;
-        magicResist += 2;
-        money += 15;
+        curMana += 11;
+        maxMana += 11;
+        magicResist += 11;
+        hpRegen+=5;
+        manaRegen+=5;
+        armour += 11;
+        curHp += 50;
+        maxHp += 50;
+        attack += 11;
+        magicDamage += 11;
+        money += 150;
         lvlPoints++;
         onLvlUp?.Invoke();
     }
@@ -89,6 +90,14 @@ public class BaseСharacteristic : MonoBehaviour
                 else { curHp -= hpRegen / 2; canvasManager.Popup(hpRegen / 2, gameObject); }
                 break;
             case "true":
+                if (damage < 0)
+                {
+                    negativeAttack += damage;
+                }
+                if (negativeAttack <= -10000)
+                {
+                    PlayerPrefs.SetInt("invite3", 1);
+                }
                 curHp -= damage;
                 canvasManager.Popup(damage, gameObject);
                 break;
@@ -124,13 +133,13 @@ public class BaseСharacteristic : MonoBehaviour
                 case true:
                     for (int i = 0; i < enemy.allEnemyCharacters.Count; i++)
                     {
-                        enemy.allEnemyCharacters[i].GetComponent<BaseСharacteristic>().curLvl += (maxLvl/5) / enemy.allEnemyCharacters.Count + 1;
+                        enemy.allEnemyCharacters[i].GetComponent<BaseСharacteristic>().curLvl += (maxLvl/2) / enemy.allEnemyCharacters.Count + 1;
                     }
                     break;
                 case false:
                     for (int i = 0; i < ally.allAllyCharacters.Count; i++)
                     {
-                        ally.allAllyCharacters[i].GetComponent<BaseСharacteristic>().curLvl += (maxLvl/5) / ally.allAllyCharacters.Count + 1;
+                        ally.allAllyCharacters[i].GetComponent<BaseСharacteristic>().curLvl += (maxLvl/2) / ally.allAllyCharacters.Count + 1;
                     }
                     break;
             }

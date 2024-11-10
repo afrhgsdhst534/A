@@ -6,6 +6,8 @@ public class PuzzleActivator : MonoBehaviour
     public string key;
     void Start()
     {
+        PlayerPrefs.SetInt("invite1", 1);
+
         Image i = GetComponent<Image>();
         if (PlayerPrefs.GetInt(key) == 1)
         {

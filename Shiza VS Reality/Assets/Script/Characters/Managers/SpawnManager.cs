@@ -1,29 +1,52 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 public class SpawnManager : MonoBehaviour
 {
     public static SpawnManager instance;
     public bool spawn;
-    public float maxTime = 10;
+    public float maxTime = 5;
     public float curTime;
     public List<GameObject> enemys;
     [Header("SpawnPlanes")]
     public int x;
     public int y;
     public GameObject plane;
+    int lvl;
+    int spd;
     Vector3 vec => plane.transform.position;
+    public Transform spawner;
+    CanvasManager can;
+    public List<AudioSource> AS;
+    public GameObject onEnd;
     private void OnEnable()
     {
+        Time.timeScale = 1;
         instance = this;
         if (x > 0 || y > 0)
             SpawnPlanes(x, y);
     }
+    public void Restart()
+    {
+        SceneManager.LoadScene(1);
+    }
     public void Spawn()
     {
+        var r = Random.Range(0, AS.Count);
+        AS[r].Play();
+        can = CanvasManager.instance;
+        var s = Instantiate(spawner.gameObject,can.pickedChar.transform);
+        s.transform.Translate(0, 0, 7.5f);
+        spawner = s.transform;
         spawn = true;
     }
     private void Update()
     {
+        if (spawner == null)
+        {
+            onEnd.SetActive(true);
+            Time.timeScale = 0;
+        }
         SpawnEnemy();
     }
     public void SpawnEnemy()
@@ -33,10 +56,14 @@ public class SpawnManager : MonoBehaviour
             curTime -= Time.deltaTime;
             if (curTime <= 0)
             {
-                int ranE = Random.Range(0, enemys.Count);
-                int ranN = Random.Range(1, 9);
-                var c = Instantiate(enemys[ranE], RandVec(ranN), Quaternion.identity);
-                c.GetComponent<BaseÑharacteristic>().isAlly = false;
+                var r = Random.Range(0, enemys.Count);
+                var c=  Instantiate(enemys[r], spawner.position, Quaternion.identity);
+                var b = c.GetComponent<BaseÑharacteristic>();
+                b.isAlly = false;
+                b.curLvl+=lvl;
+                b.speed += spd;
+                spd += 10;
+                lvl += 100;
                 c.GetComponent<Attack>().AttackObjChanger(c.GetComponent<RelativeObjs>().attackObj);
                 c.GetComponent<Rigidbody>().isKinematic = true;
                 var m = c.GetComponent<MovementChanger>();
@@ -44,30 +71,6 @@ public class SpawnManager : MonoBehaviour
                 m.Next();
                 curTime = maxTime;
             }
-        }
-    }
-    public Vector3 RandVec(int ran)
-    {
-        switch (ran)
-        {
-            case 1:
-                return new Vector3(-10, 0.4f, 0);
-            case 2:
-                return new Vector3(-10, 0.4f, 10);
-            case 3:
-                return new Vector3(0, 0.4f, 10);
-            case 4:
-                return new Vector3(10, 0.4f, 10);
-            case 5:
-                return new Vector3(10, 0.4f, 0);
-            case 6:
-                return new Vector3(10, 0.4f, -10);
-            case 7:
-                return new Vector3(0, 0.4f, -10);
-            case 8:
-                return new Vector3(-10, 0.4f, -10);
-            default:
-                return new Vector3(-10, 0.4f, -10);
         }
     }
     public void SpawnPlanes(int x, int y)

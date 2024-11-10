@@ -8,6 +8,7 @@ public class PlayersManager : MonoBehaviour
     public void Next(Base—haracteristic bc)
     {
         var c = Instantiate(bc, new Vector3(0, 0, 0), Quaternion.identity);
+        c.GetComponent<SpellManager>().Add(c.GetComponent<RelativeObjs>().spells[0]);
         c.GetComponent<Attack>().AttackObjChanger(c.GetComponent<RelativeObjs>().attackObj);
         c.isAlly = true;
         obj.SetActive(true);

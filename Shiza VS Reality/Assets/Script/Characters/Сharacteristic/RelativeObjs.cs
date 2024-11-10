@@ -41,7 +41,11 @@ public class RelativeObjs : MonoBehaviour
         }
         else
         {
-            
+            var e = can.canvasManager.enableOnLvl;
+            e.SetActive(true);
+            Instantiate(deadly[Random.Range(0, deadly.Count)],can.canvasManager.enableOnLvl.transform);
+            Instantiate(defendly[Random.Range(0, defendly.Count)], can.canvasManager.enableOnLvl.transform);
+            Instantiate(books[Random.Range(0, books.Count)], can.canvasManager.enableOnLvl.transform);
         }
     }
 }

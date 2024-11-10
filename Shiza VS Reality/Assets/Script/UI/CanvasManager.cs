@@ -101,6 +101,7 @@ public class CanvasManager : MonoBehaviour
             if (Time.timeScale > 0)
             {
                 Time.timeScale = 0;
+                PlayerPrefs.SetInt("invite4", 1);
             }
             else { Time.timeScale = 1; }
         }

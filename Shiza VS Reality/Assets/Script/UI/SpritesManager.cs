@@ -17,4 +17,12 @@ public class SpritesManager : MonoBehaviour
     {
         Cursor.SetCursor(texture, Vector2.zero, CursorMode.Auto);
     }
+    private void OnEnable()
+    {
+        ChangeCursor(defaultCursor);
+    }
+    private void OnDestroy()
+    {
+        ChangeCursor(defaultCursor);
+    }
 }

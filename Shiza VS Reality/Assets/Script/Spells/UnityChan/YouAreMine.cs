@@ -1,25 +1,28 @@
-using UnityEngine;
+using UnityEngine;using System.Threading.Tasks;
 public class YouAreMine : Spell
 {
-    SpritesManager manager;
-    AllyCharacters allyC;
-    EnemyCharacters enemyC;
-    MovementChanger mc;
-    Base—haracteristic bc;
+    public SpritesManager manager;
+    public AllyCharacters allyC;
+    public EnemyCharacters enemyC;
+  public  MovementChanger mc;
+    public Base—haracteristic bc;
     public override void OnAwake(GameObject obj)
     {
         base.OnAwake(obj);
+    }
+    public override void Cast()
+    {
         mc = player.GetComponent<MovementChanger>();
         bc = player.GetComponent<Base—haracteristic>();
         manager = SpritesManager.instance;
         allyC = AllyCharacters.instance;
         enemyC = EnemyCharacters.instance;
+        if (bc.curMana >= bc.maxMana)
+        {
+            active = true;
+        }
     }
-    public override void Cast()
-    {
-        active = true;
-    }
-    public void Update()
+    public  void Update()
     {
         try
         {
@@ -37,38 +40,25 @@ public class YouAreMine : Spell
                             RaycastHit hit;
                             if (Physics.Raycast(ray, out hit, Mathf.Infinity, allyC.mask))
                             {
+                                print(1);
                                 var obj = hit.transform.gameObject;
-                                if (!obj.GetComponent<Base—haracteristic>().isBoss && !obj.GetComponent<Base—haracteristic>().isAlly && bc.curHp > obj.GetComponent<Base—haracteristic>().curHp)
+                                if (!obj.GetComponent<Base—haracteristic>().isBoss && !obj.GetComponent<Base—haracteristic>().isAlly)
                                 {
                                     Next(obj, true);
                                 }
                             }
                         }
                         break;
-                    case "ai":
-                        switch (bc.isAlly)
-                        {
-                            case true:
-                                var v = Random.Range(0, enemyC.allEnemyCharacters.Count - 1);
-                                if (bc.curHp > enemyC.allEnemyCharacters[v].GetComponent<Base—haracteristic>().curHp)
-                                {
-                                    Next(enemyC.allEnemyCharacters[v], true);
-                                }
-                                break;
-                            case false:
-                                var z = Random.Range(0, allyC.allAllyCharacters.Count - 1);
-                                if (bc.curHp > allyC.allAllyCharacters[z].GetComponent<Base—haracteristic>().curHp)
-                                    Next(allyC.allAllyCharacters[z], false);
-                                break;
-                        }
+                     default:
                         break;
                 }
             }
         }
         catch { }
     }
-    void Next(GameObject obj, bool ally)
+    async void Next(GameObject obj, bool ally)
     {
+        print(1);
         switch (ally)
         {
             case true:
@@ -89,8 +79,11 @@ public class YouAreMine : Spell
         player.GetComponent<Animator>().SetTrigger("cast");
         manager.ChangeCursor(manager.defaultCursor);
         cost = 600 - value * 5;
-        cooldown = 20;
+        cooldown = 10;
+        PlayerPrefs.SetInt("invite8", 1);
         bc.isCast = false;
+        bc.curMana -= 100;
         active = false;
+        await Task.Delay(1);
     }
 }

@@ -59,7 +59,7 @@ public class Cavitation : Spell
         {
             for (int i = 0; i < allyArr.Count; i++)
             {
-                float dist = Vector3.Distance(enemyArr[i].transform.position, player.transform.position);
+                float dist = Vector3.Distance(allyArr[i].transform.position, player.transform.position);
                 var manager = allyArr[i].GetComponent<BuffManager>();
                 if (dist <= 8)
                 {

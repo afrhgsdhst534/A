@@ -3316,6 +3316,7 @@ GameObject:
   - component: {fileID: 7578705193069247730}
   - component: {fileID: 7578705193069247729}
   - component: {fileID: 7578705193069247728}
+  - component: {fileID: 3955904757552927938}
   m_Layer: 6
   m_Name: Unity Chan
   m_TagString: Player
@@ -3404,21 +3405,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d01ea8d13280eb4da62c2a452cca458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  negativeAttack: 0
   speed: 25
   curMana: 1000000000
-  maxMana: 100
-  magicResist: 25
+  maxMana: 500
+  magicResist: 15
   hpRegen: -2
-  armour: 25
+  armour: 15
   curHp: 1000000000
-  maxHp: 100
+  maxHp: 133
   attack: 30
   magicDamage: 50
   attackSpeed: 0
-  manaRegen: 1
-  money: 1000000
+  manaRegen: 11
+  money: 500
   moneyPerSecond: 0
-  attackRange: 9
+  attackRange: 14
   isAlly: 1
   isAttacking: 0
   canMove: 1
@@ -3468,6 +3470,7 @@ MonoBehaviour:
   a: 0
   s: 0
   d: 0
+  n: {fileID: 0}
 --- !u!114 &7578705193069247720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3608,12 +3611,12 @@ MonoBehaviour:
   stone: {fileID: 5009505518641333424}
   spells:
   - {fileID: 135572619935727097, guid: c8d870b058be5ed4db10b018dc4b59c2, type: 3}
-  - {fileID: 1228093393288053268, guid: cd3301efe16acf4438ec0d3af6f4b7a3, type: 3}
   - {fileID: -2366991100997648168, guid: 652d3b351a51e7c42a11b7ab73cfe648, type: 3}
+  - {fileID: 1228093393288053268, guid: cd3301efe16acf4438ec0d3af6f4b7a3, type: 3}
   attackObj: {fileID: -4447963825976415128, guid: 537e008d5ea01c94fa2986254b2b3199, type: 3}
   attackMods:
-  - {fileID: 1895607939137729140, guid: 53fd90af047b8fe4fad765876ee5b46c, type: 3}
   - {fileID: 6696658285894859630, guid: 84ffed9f76d00a6468124f92fa96c5aa, type: 3}
+  - {fileID: 1895607939137729140, guid: 53fd90af047b8fe4fad765876ee5b46c, type: 3}
   us: {fileID: 8207941634934105826}
   deadly: []
   defendly: []
@@ -3633,6 +3636,20 @@ MonoBehaviour:
   items: []
   inventory: {fileID: 7578705192606045550}
   obj: {fileID: 0}
+--- !u!114 &3955904757552927938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7578705193069247743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9becb61b1dfdfbc46ac6d28bde04621f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 0
+  key: invite6
 --- !u!1 &7578705193095450164
 GameObject:
   m_ObjectHideFlags: 0

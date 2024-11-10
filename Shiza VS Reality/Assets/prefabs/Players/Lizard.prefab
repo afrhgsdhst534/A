@@ -1380,22 +1380,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d01ea8d13280eb4da62c2a452cca458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 25
+  speed: 21
   curMana: 1000000000
   maxMana: 100
   magicResist: 25
-  hpRegen: 1
+  hpRegen: 5
   armour: 25
   curHp: 1000000000
   maxHp: 100
-  attack: 15
-  magicDamage: 50
+  attack: 30
+  magicDamage: 11
   attackSpeed: 0
   manaRegen: 1
-  money: 1000000
+  money: 35
   moneyPerSecond: 0
   attackRange: 9
-  isAlly: 1
+  isAlly: 0
   isAttacking: 0
   canMove: 1
   isBoss: 0
@@ -1444,6 +1444,7 @@ MonoBehaviour:
   a: 0
   s: 0
   d: 0
+  n: {fileID: 0}
 --- !u!114 &1765056343672999988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1483,7 +1484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ff0596decd56e145a777273d31933ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: arrow
+  movement: ai
 --- !u!114 &1765056343672999985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1583,14 +1584,14 @@ MonoBehaviour:
   body: {fileID: 0}
   stone: {fileID: 3807533890859105986}
   spells:
+  - {fileID: 3980904268129253235, guid: 15294a4df48638147bd3794724743bf2, type: 3}
   - {fileID: 7787163586165256435, guid: 42011438a8bb58548b4283e050dd7bfd, type: 3}
   - {fileID: 1416212723059357406, guid: 6e445cfa60a3be344938f193b7904f72, type: 3}
-  - {fileID: 3980904268129253235, guid: 15294a4df48638147bd3794724743bf2, type: 3}
   - {fileID: 319503390984746132, guid: 257aa6f637f8c974fbec986d3743b74d, type: 3}
-  attackObj: {fileID: -4447963825976415128, guid: 537e008d5ea01c94fa2986254b2b3199, type: 3}
+  attackObj: {fileID: -9024424300145753634, guid: 6031a2b8a76433142bfb05846848ab69, type: 3}
   attackMods:
   - {fileID: 3808876333641923547, guid: 639ad0696ffb1f044881317b1e6433b2, type: 3}
-  - {fileID: -3231743491050302707, guid: 639800f22ab76bb42a9800a2b14ecc7f, type: 3}
+  - {fileID: 7308075883694106206, guid: 0c1019740e07f384d90dee818d284dc5, type: 3}
   us: {fileID: 52409533782159259}
   deadly: []
   defendly: []

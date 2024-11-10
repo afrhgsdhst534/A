@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Threading.Tasks;
 public class RingOfPower : Item
 {
     bool active;
@@ -75,7 +76,7 @@ public class RingOfPower : Item
         }
         catch {}
     }
-    void Next(GameObject obj,bool ally)
+    async void Next(GameObject obj,bool ally)
     {
         switch (ally)
         {
@@ -97,9 +98,11 @@ public class RingOfPower : Item
         player.GetComponent<Animator>().SetTrigger("cast");
         player.GetComponent<InventoryManager>().items.Remove(this);
         manager.ChangeCursor(manager.defaultCursor);
+        PlayerPrefs.SetInt("invite8", 1);
         Destroy(gameObject);
         bc.isCast = false;
         active = false;
+        await Task.Delay(1);
     }
     private void OnDisable()
     {

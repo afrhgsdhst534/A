@@ -37,7 +37,7 @@ public class PlayersUIManager : MonoBehaviour
     }
     public void Update()
     {
-        if(manager.pickedChar==gameObject)
+        if (manager.pickedChar==gameObject)
         {
             canvas.SetActive(true);
         }
@@ -58,10 +58,10 @@ public class PlayersUIManager : MonoBehaviour
         }
         if (manager.pickedChar == gameObject)
         {
-            tMana.text = mana.value.ToString();
-            tMMana.text = mana.maxValue.ToString();
-            tHp.text = hp.value.ToString();
-            tMHp.text = hp.maxValue.ToString();
+            tMana.text = chars.curMana.ToString();
+            tMMana.text = chars.maxMana.ToString();
+            tHp.text = chars.curHp.ToString();
+            tMHp.text = chars.maxHp.ToString();
             hpRegen.text = chars.hpRegen.ToString();
             manaRegen.text = chars.manaRegen.ToString();
             statsName.text = transform.gameObject.name;
